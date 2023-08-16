@@ -491,14 +491,15 @@ MonoBehaviour:
   - {x: 6, y: 0, z: -6}
   - {x: 6, y: 0, z: 6}
   cornerPositions:
-  - {x: -11.5, y: -1.5, z: -11.5}
-  - {x: -11.5, y: -1.5, z: 11.5}
+  - {x: -11.5, y: -1, z: -11.5}
+  - {x: -11.5, y: -1, z: 11.5}
   - {x: 11.5, y: -1, z: -11.5}
   - {x: 11.5, y: -1, z: 11.5}
   potentianPOITag: potential_poi
-  gameDuration: 360
+  gameDuration: 120
   countdown: 0
   timerBar: {fileID: 140923500}
+  _gameOver: 0
 --- !u!4 &97979050
 Transform:
   m_ObjectHideFlags: 0
@@ -4378,6 +4379,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: RotationSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_Name

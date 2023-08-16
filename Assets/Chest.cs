@@ -35,7 +35,8 @@ public class Chest : MonoBehaviour, InteractableItem
                 Debug.Log("Unlucky!");
                 GetRelicOrTrap(player);
             }
-        } else if (GameStats.chestsFound == 6 && !GameStats.keyFound)
+        } 
+        if (GameStats.chestsFound == 6 && !GameStats.keyFound)
         {
             Debug.Log("last Chest, get key");
             GetKey();
@@ -50,15 +51,22 @@ public class Chest : MonoBehaviour, InteractableItem
 
     private void GetRelicOrTrap(Player player)
     {
-        if (TossCoin())
+        if (GameStats.traps == 2 && !GameStats.keyFound)
         {
-            //relic
             GetRelic();
         }
         else
         {
-            //trap!
-            Trap(player);
+            if (TossCoin())
+            {
+                //relic
+                GetRelic();
+            }
+            else
+            {
+                //trap!
+                Trap(player);
+            }
         }
     }
 
@@ -81,6 +89,7 @@ public class Chest : MonoBehaviour, InteractableItem
         Debug.Log("Triggered trap");
         _chestsManager.ShowTrap(GameStats.chestsFound);
         player.health -= 35;
+        GameStats.traps++;
     }
 
     private static bool TossCoin()

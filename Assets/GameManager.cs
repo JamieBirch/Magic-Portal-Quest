@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public float gameDuration;
     public float countdown;
     public Image timerBar;
+    public bool _gameOver = false;
     
     // Start is called before the first frame update
     void Start()
@@ -42,44 +43,26 @@ public class GameManager : MonoBehaviour
     {
         if (playerComponent.health <= 0)
         {
+            Debug.Log("You're dead");
             GameOver();
         }
 
         if (countdown <= 0)
         {
+            Debug.Log("Time is out");
             GameOver();
         }
 
         countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
         timerBar.fillAmount = countdown / gameDuration;
-        
-        // countdownText.text = $"{countdown:00.00}";
     }
 
-    private static void GameOver()
+    private void GameOver()
     {
+        _gameOver = true;
         Debug.Log("GameOver");
     }
-
-    /*private void PlaceKey()
-    {
-        int keyPositionIndex = new Random().Next(0, cornerPositions.Length);
-        //avoid placing in same corner
-        while (keyPositionIndex == exitPositionIndex)
-        {
-            keyPositionIndex = new Random().Next(0, cornerPositions.Length);
-        }
-        Vector3 cornerPosition = cornerPositions[keyPositionIndex];
-        Instantiate(key, cornerPosition, Quaternion.identity);
-    }*/
-
-    /*private void PlaceExit()
-    {
-        exitPositionIndex = new Random().Next(0, cornerPositions.Length);
-        Vector3 cornerPosition = cornerPositions[exitPositionIndex];
-        Instantiate(exit, cornerPosition, Quaternion.identity);
-    }*/
 
     private void PlaceChests()
     {
