@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -115,6 +116,19 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			Interact();
+		}
+
+		private void Interact()
+		{
+			//TODO
+			if (_input.interact)
+			{
+				Debug.Log("Interact");
+
+				_input.interact = false;
+			}
+			
 		}
 
 		private void LateUpdate()
