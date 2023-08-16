@@ -64,23 +64,13 @@ public class GameManager : MonoBehaviour
         Vector3 chestOffset = new Vector3(0, 1.5f, 0);
         IEnumerable<Vector3> pois = GameObject.FindGameObjectsWithTag(potentianPOITag).Select(poi -> poi.transform.position);
         IEnumerable<Vector3> positions = pois.Concat(cornerPositions);
-        // potentialPOIS.Select(a -> a.transform.position)
         Vector3[] pickedPOIsLocations = positions.OrderBy(x => new Random().Next()).Take(chestsPerLocation/* + signalPointsPerLocation*/).ToArray();
         for (int i = 0; i < pickedPOIsLocations.Length; i++)
         {
-            /*if (i < chestsPerLocation/2)
-            {
-                Instantiate(chest, pickedPOIsLocations[i].transform.position + chestOffset, Quaternion.identity);
-            } else */if (i < chestsPerLocation)
+            if (i < chestsPerLocation)
             {
                 Instantiate(chest, pickedPOIsLocations[i]/*.transform.position*/ + chestOffset, Quaternion.identity);
-                // chest.GetComponent<Chest>().isATrap = true;
             }
-            /*else
-            {
-                Instantiate(signalPoint, pickedPOIsLocations[i].transform.position + chestOffset, Quaternion.identity);
-                // Debug.Log("placed signal spot");
-            }*/
         }
     }
 
