@@ -3,20 +3,20 @@ using Random = System.Random;
 
 public class Chest : MonoBehaviour
 {
-    // public bool isATrap = false;
-
-    // Update is called once per frame
     public void OpenChest()
     {
-        if (GameStats.chestsFound >= 2)
+        if (GameStats.chestsFound >= 2 && !GameStats.keyFound)
         {
             //chance to find a key
-        }
-        else
+        } else if (GameStats.chestsFound == 6)
+        {
+            //find key
+        } else
         {
             if (TossCoin())
             {
                 //relic
+                GameStats.relics++;
             }
             else
             {

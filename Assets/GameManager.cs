@@ -1,6 +1,5 @@
 using UnityEngine;
 using Random = System.Random;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject chest;
     // public GameObject signalPoint;
     public Vector3[] tilePositions = {new Vector3(-6, 0, -6), new Vector3(-6, 0, 6), new Vector3(6, 0, -6), new Vector3(6, 0, 6)};
-    public Vector3[] cornerPositions = {new Vector3(-11.5f, 0, -11.5f), new Vector3(-11.5f, 0, 11.5f), new Vector3(11.5f, 0, -11.5f), new Vector3(11.5f, 0, 11.5f)};
+    public Vector3[] cornerPositions = {new Vector3(-11.5f, -1.5f, -11.5f), new Vector3(-11.5f, -1.5f, 11.5f), new Vector3(11.5f, -1.5f, -11.5f), new Vector3(11.5f, -1.5f, 11.5f)};
     private int exitPositionIndex;
     public string potentianPOITag = "potential_poi";
     private int chestsPerLocation = 7;
@@ -62,7 +61,13 @@ public class GameManager : MonoBehaviour
     private void PlaceChests()
     {
         Vector3 chestOffset = new Vector3(0, 1.5f, 0);
-        IEnumerable<Vector3> pois = GameObject.FindGameObjectsWithTag(potentianPOITag).Select(poi -> poi.transform.position);
+        // IEnumerable<Vector3> pois = GameObject.FindGameObjectsWithTag(potentianPOITag).Select(poi -> poi.transform.position);
+        GameObject[] gameObjectsWithTag = GameObject.FindGameObjectsWithTag(potentianPOITag);
+        List<Vector3> pois = new List<Vector3>();
+        foreach (var go in gameObjectsWithTag)
+        {
+            pois.Add(go.transform.position);
+        }
         IEnumerable<Vector3> positions = pois.Concat(cornerPositions);
         Vector3[] pickedPOIsLocations = positions.OrderBy(x => new Random().Next()).Take(chestsPerLocation/* + signalPointsPerLocation*/).ToArray();
         for (int i = 0; i < pickedPOIsLocations.Length; i++)
