@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int health;
+    public float maxHealth = 100f;
+    public float health;
     public GameObject ground;
     public GameObject wall;
     public GameObject chest;

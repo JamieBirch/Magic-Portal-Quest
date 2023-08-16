@@ -129,7 +129,7 @@ namespace StarterAssets
 				Debug.Log("Interact");
 				if (nearbyItem.TryGetComponent<InteractableItem>(out InteractableItem item))
 				{
-					item.interact();
+					item.interact(GetComponent<Player>());
 				} 
 				_input.interact = false;
 				nearbyItem = null;

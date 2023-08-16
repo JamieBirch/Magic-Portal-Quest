@@ -1,4 +1,4 @@
 ﻿public interface InteractableItem
 {
-    void interact();
+    void interact(Player player);
 }

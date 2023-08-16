@@ -14,7 +14,7 @@ public class Chest : MonoBehaviour, InteractableItem
         _chestsManager = ChestsManager.instance;
     }
 
-    private void OpenChest()
+    private void OpenChest(Player player)
     {
         Debug.Log("Opening chest " + GameStats.chestsFound);
         if (isOpen)
@@ -33,7 +33,7 @@ public class Chest : MonoBehaviour, InteractableItem
             else
             {
                 Debug.Log("Unlucky!");
-                GetRelicOrTrap();
+                GetRelicOrTrap(player);
             }
         } else if (GameStats.chestsFound == 6 && !GameStats.keyFound)
         {
@@ -41,14 +41,14 @@ public class Chest : MonoBehaviour, InteractableItem
             GetKey();
         } else
         {
-            GetRelicOrTrap();
+            GetRelicOrTrap(player);
         }
 
         isOpen = true;
         GameStats.chestsFound++;
     }
 
-    private void GetRelicOrTrap()
+    private void GetRelicOrTrap(Player player)
     {
         if (TossCoin())
         {
@@ -58,7 +58,7 @@ public class Chest : MonoBehaviour, InteractableItem
         else
         {
             //trap!
-            Trap();
+            Trap(player);
         }
     }
 
@@ -66,8 +66,6 @@ public class Chest : MonoBehaviour, InteractableItem
     {
         Debug.Log("Got Relic");
         _chestsManager.ShowRelic(GameStats.chestsFound);
-        /*GameObject chestPanel = chestsUIPanel.GetComponent<ChestsUiList>().chestsPanelsArray[GameStats.chestsFound];
-        chestPanel.GetComponent<ChestUI>().ShowRelic();*/
         GameStats.relics++;
     }
 
@@ -76,17 +74,13 @@ public class Chest : MonoBehaviour, InteractableItem
         Debug.Log("Got Key");
         GameStats.keyFound = true;
         _chestsManager.ShowKey(GameStats.chestsFound);
-        /*GameObject chestPanel = chestsUIPanel.GetComponent<ChestsUiList>().chestsPanelsArray[GameStats.chestsFound];
-        chestPanel.GetComponent<ChestUI>().ShowKey();*/
     }
 
-    private void Trap()
+    private void Trap(Player player)
     {
         Debug.Log("Triggered trap");
         _chestsManager.ShowTrap(GameStats.chestsFound);
-        /*GameObject chestPanel = chestsUIPanel.GetComponent<ChestsUiList>().chestsPanelsArray[GameStats.chestsFound];
-        chestPanel.GetComponent<ChestUI>().ShowTrap();*/
-        //TODO: playerHealth-=30;
+        player.health -= 35;
     }
 
     private static bool TossCoin()
@@ -103,9 +97,9 @@ public class Chest : MonoBehaviour, InteractableItem
         return nextDouble <= 30;
     }
 
-    public void interact()
+    public void interact(Player player)
     {
         Debug.Log("Interact with chest");
-        OpenChest();
+        OpenChest(player);
     }
 }
