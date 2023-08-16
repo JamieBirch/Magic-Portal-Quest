@@ -4,13 +4,13 @@ using Random = System.Random;
 
 public class Chest : MonoBehaviour, InteractableItem
 {
-    public float unlockDuration = 3;
-    public float countdown;
+    // public float unlockDuration = 3;
+    // public float countdown;
 
-    private void Start()
+    /*private void Start()
     {
         countdown = unlockDuration;
-    }
+    }*/
 
     private void OpenChest()
     {
@@ -75,6 +75,6 @@ public class Chest : MonoBehaviour, InteractableItem
     public void interact()
     {
         Debug.Log("Interact with chest");
-        // throw new System.NotImplementedException();
+        OpenChest();
     }
 }

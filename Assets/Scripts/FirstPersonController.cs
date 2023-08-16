@@ -124,7 +124,7 @@ namespace StarterAssets
 		private void Interact()
 		{
 			//TODO
-			if (_input.interact)
+			if (nearbyItem != null && _input.interact)
 			{
 				Debug.Log("Interact");
 				if (nearbyItem.TryGetComponent<InteractableItem>(out InteractableItem item))
@@ -132,6 +132,7 @@ namespace StarterAssets
 					item.interact();
 				} 
 				_input.interact = false;
+				nearbyItem = null;
 			}
 			
 		}
