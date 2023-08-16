@@ -2,6 +2,7 @@ using UnityEngine;
 using Random = System.Random;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
@@ -20,23 +21,44 @@ public class GameManager : MonoBehaviour
     private int chestsPerLocation = 7;
     // private int signalPointsPerLocation = 4;
     
+    public float gameDuration;
+    public float countdown;
+    public Text countdownText;
+    
     // Start is called before the first frame update
     void Start()
     {
         GenerateMaze();
-        PlaceExit();
-        PlaceKey();
+        // PlaceExit();
+        // PlaceKey();
         PlaceChests();
 
         playerComponent = player.GetComponent<Player>();
+        
+        countdown = gameDuration;
     }
 
     private void Update()
     {
         if (playerComponent.health <= 0)
         {
-            Debug.Log("GameOver");
+            GameOver();
         }
+
+        if (countdown <= 0)
+        {
+            GameOver();
+        }
+
+        countdown -= Time.deltaTime;
+        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
+        
+        // countdownText.text = $"{countdown:00.00}";
+    }
+
+    private static void GameOver()
+    {
+        Debug.Log("GameOver");
     }
 
     private void PlaceKey()
@@ -51,12 +73,12 @@ public class GameManager : MonoBehaviour
         Instantiate(key, cornerPosition, Quaternion.identity);
     }
 
-    private void PlaceExit()
+    /*private void PlaceExit()
     {
         exitPositionIndex = new Random().Next(0, cornerPositions.Length);
         Vector3 cornerPosition = cornerPositions[exitPositionIndex];
         Instantiate(exit, cornerPosition, Quaternion.identity);
-    }
+    }*/
 
     private void PlaceChests()
     {

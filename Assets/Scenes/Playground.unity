@@ -309,8 +309,6 @@ MonoBehaviour:
   exit: {fileID: 4974204992020084477, guid: 08182bc4d6135a64e8f3c30a5846bab6, type: 3}
   key: {fileID: 4974204992020084477, guid: 3b852ae33f7cf594587ebdb98caddf87, type: 3}
   chest: {fileID: 4974204992020084477, guid: af3085ab0a08bed4fb48c715c37baea6, type: 3}
-  signalPoint: {fileID: 4974204992020084477, guid: 1a33f9dc663c95849acd4d216ae75021,
-    type: 3}
   tilePositions:
   - {x: -6, y: 0, z: -6}
   - {x: -6, y: 0, z: 6}
@@ -322,6 +320,9 @@ MonoBehaviour:
   - {x: 11.5, y: 0, z: -11.5}
   - {x: 11.5, y: 0, z: 11.5}
   potentianPOITag: potential_poi
+  gameDuration: 60
+  countdown: 0
+  countdownText: {fileID: 0}
 --- !u!4 &97979050
 Transform:
   m_ObjectHideFlags: 0
@@ -5439,7 +5440,6 @@ MonoBehaviour:
   ground: {fileID: 2088003456}
   wall: {fileID: 1885739200817458085, guid: 9563c70e1d1959c478d67fb62ef4a4d1, type: 3}
   chest: {fileID: 4974204992020084477, guid: af3085ab0a08bed4fb48c715c37baea6, type: 3}
-  signal: {fileID: 4974204992020084477, guid: 1a33f9dc663c95849acd4d216ae75021, type: 3}
   key: {fileID: 4974204992020084477, guid: 3b852ae33f7cf594587ebdb98caddf87, type: 3}
   exit: {fileID: 4974204992020084477, guid: 08182bc4d6135a64e8f3c30a5846bab6, type: 3}
 --- !u!1 &2114283753834967212
