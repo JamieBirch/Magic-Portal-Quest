@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -19,10 +20,10 @@ public class Player : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject == chest)
+        if (hit.gameObject.TryGetComponent(out InteractableItem item))
         {
-            // chest.GetComponent<Chest>()
-            Debug.Log(hit.gameObject);
+            Debug.Log(item);
+            GetComponent<FirstPersonController>().nearbyItem = hit.gameObject;
         }
     }
 }

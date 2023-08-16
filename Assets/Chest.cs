@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Random = System.Random;
 
-public class Chest : MonoBehaviour
+public class Chest : MonoBehaviour, InteractableItem
 {
     public float unlockDuration = 3;
     public float countdown;
@@ -12,28 +12,6 @@ public class Chest : MonoBehaviour
         countdown = unlockDuration;
     }
 
-    public void OnMouseDrag()
-    {
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }
-        
-        // holdTimerText.enabled = true;
-        countdown -= Time.deltaTime;
-        // holdTimerText.text = holdTimerPreText + (int)countdown;
-        if (countdown <= 0)
-        {
-            OpenChest();
-        }
-    }
-    
-    public void OnMouseUp()
-    {
-        countdown = unlockDuration;
-        // holdTimerText.enabled = false;
-    }
-    
     private void OpenChest()
     {
         if (GameStats.chestsFound >= 2 && !GameStats.keyFound)
@@ -92,5 +70,11 @@ public class Chest : MonoBehaviour
         Random random = new Random();
         float nextDouble = (float)random.NextDouble() * 100;
         return nextDouble <= 30;
+    }
+
+    public void interact()
+    {
+        Debug.Log("Interact with chest");
+        // throw new System.NotImplementedException();
     }
 }

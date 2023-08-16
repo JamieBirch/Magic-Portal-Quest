@@ -65,6 +65,8 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
+		public GameObject nearbyItem = null;
+
 	
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		private PlayerInput _playerInput;
@@ -125,7 +127,10 @@ namespace StarterAssets
 			if (_input.interact)
 			{
 				Debug.Log("Interact");
-
+				if (nearbyItem.TryGetComponent<InteractableItem>(out InteractableItem item))
+				{
+					item.interact();
+				} 
 				_input.interact = false;
 			}
 			
