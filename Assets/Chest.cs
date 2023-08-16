@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = System.Random;
 
@@ -19,10 +18,11 @@ public class Chest : MonoBehaviour, InteractableItem
         Debug.Log("Opening chest " + GameStats.chestsFound);
         if (isOpen)
         {
+            PlayerMessageService.instance.ShowMessage("Chest already open");
             Debug.Log("Chest already open");
             return;
         }
-        if (GameStats.chestsFound >= 2 && !GameStats.keyFound)
+        if (GameStats.chestsFound >= 2 && GameStats.chestsFound < 6 && !GameStats.keyFound)
         {
             Debug.Log("Chance to get a key");
             if (OneOfTree())
@@ -35,12 +35,11 @@ public class Chest : MonoBehaviour, InteractableItem
                 Debug.Log("Unlucky!");
                 GetRelicOrTrap(player);
             }
-        } 
-        if (GameStats.chestsFound == 6 && !GameStats.keyFound)
+        } else if (GameStats.chestsFound == 6 && !GameStats.keyFound)
         {
             Debug.Log("last Chest, get key");
             GetKey();
-        } else
+        } else 
         {
             GetRelicOrTrap(player);
         }
@@ -72,6 +71,7 @@ public class Chest : MonoBehaviour, InteractableItem
 
     private void GetRelic()
     {
+        PlayerMessageService.instance.ShowMessage("Relic found");
         Debug.Log("Got Relic");
         _chestsManager.ShowRelic(GameStats.chestsFound);
         GameStats.relics++;
@@ -79,13 +79,15 @@ public class Chest : MonoBehaviour, InteractableItem
 
     private void GetKey()
     {
-        Debug.Log("Got Key");
+        PlayerMessageService.instance.ShowMessage("Key Found!");
+        Debug.Log("Key Found");
         GameStats.keyFound = true;
         _chestsManager.ShowKey(GameStats.chestsFound);
     }
 
     private void Trap(Player player)
     {
+        PlayerMessageService.instance.ShowMessage("Trap triggered");
         Debug.Log("Triggered trap");
         _chestsManager.ShowTrap(GameStats.chestsFound);
         player.health -= 35;

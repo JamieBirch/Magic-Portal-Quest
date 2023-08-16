@@ -43,12 +43,14 @@ public class GameManager : MonoBehaviour
     {
         if (playerComponent.health <= 0)
         {
+            PlayerMessageService.instance.ShowMessage("You're dead");
             Debug.Log("You're dead");
             GameOver();
         }
 
         if (countdown <= 0)
         {
+            PlayerMessageService.instance.ShowMessage("Time is out");
             Debug.Log("Time is out");
             GameOver();
         }
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         _gameOver = true;
+        PlayerMessageService.instance.ShowMessage("GameOver");
         Debug.Log("GameOver");
     }
 
