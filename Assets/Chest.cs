@@ -1,58 +1,73 @@
+using System;
 using UnityEngine;
 using Random = System.Random;
 
 public class Chest : MonoBehaviour, InteractableItem
 {
-    // public float unlockDuration = 3;
-    // public float countdown;
-
-    /*private void Start()
-    {
-        countdown = unlockDuration;
-    }*/
-
+    private ChestsManager _chestsManager;
     private bool isOpen = false;
 
-    public GameObject chestsUIPanel;
+    // public GameObject chestsUIPanel;
+
+    private void Awake()
+    {
+        _chestsManager = ChestsManager.instance;
+    }
 
     private void OpenChest()
     {
+        Debug.Log("Opening chest " + GameStats.chestsFound);
         if (isOpen)
         {
+            Debug.Log("Chest already open");
             return;
         }
         if (GameStats.chestsFound >= 2 && !GameStats.keyFound)
         {
+            Debug.Log("Chance to get a key");
             if (OneOfTree())
             {
+                Debug.Log("Lucky!");
                 GetKey();
-            }
-        } else if (GameStats.chestsFound == 6)
-        {
-            GetKey();
-        } else
-        {
-            if (TossCoin())
-            {
-                //relic
-                GetRelic();
             }
             else
             {
-                //trap!
-                Trap();
+                Debug.Log("Unlucky!");
+                GetRelicOrTrap();
             }
+        } else if (GameStats.chestsFound == 6 && !GameStats.keyFound)
+        {
+            Debug.Log("last Chest, get key");
+            GetKey();
+        } else
+        {
+            GetRelicOrTrap();
         }
 
         isOpen = true;
         GameStats.chestsFound++;
     }
 
+    private void GetRelicOrTrap()
+    {
+        if (TossCoin())
+        {
+            //relic
+            GetRelic();
+        }
+        else
+        {
+            //trap!
+            Trap();
+        }
+    }
+
     private void GetRelic()
     {
         Debug.Log("Got Relic");
-        GameObject chestPanel = chestsUIPanel.GetComponent<ChestsUiList>().chestsPanelsArray[GameStats.chestsFound];
-        chestPanel.GetComponent<ChestUI>().ShowRelic();
+        _chestsManager.ShowRelic(GameStats.chestsFound);
+        /*GameObject chestPanel = chestsUIPanel.GetComponent<ChestsUiList>().chestsPanelsArray[GameStats.chestsFound];
+        chestPanel.GetComponent<ChestUI>().ShowRelic();*/
         GameStats.relics++;
     }
 
@@ -60,15 +75,17 @@ public class Chest : MonoBehaviour, InteractableItem
     {
         Debug.Log("Got Key");
         GameStats.keyFound = true;
-        GameObject chestPanel = chestsUIPanel.GetComponent<ChestsUiList>().chestsPanelsArray[GameStats.chestsFound];
-        chestPanel.GetComponent<ChestUI>().ShowKey();
+        _chestsManager.ShowKey(GameStats.chestsFound);
+        /*GameObject chestPanel = chestsUIPanel.GetComponent<ChestsUiList>().chestsPanelsArray[GameStats.chestsFound];
+        chestPanel.GetComponent<ChestUI>().ShowKey();*/
     }
 
     private void Trap()
     {
         Debug.Log("Triggered trap");
-        GameObject chestPanel = chestsUIPanel.GetComponent<ChestsUiList>().chestsPanelsArray[GameStats.chestsFound];
-        chestPanel.GetComponent<ChestUI>().ShowTrap();
+        _chestsManager.ShowTrap(GameStats.chestsFound);
+        /*GameObject chestPanel = chestsUIPanel.GetComponent<ChestsUiList>().chestsPanelsArray[GameStats.chestsFound];
+        chestPanel.GetComponent<ChestUI>().ShowTrap();*/
         //TODO: playerHealth-=30;
     }
 
