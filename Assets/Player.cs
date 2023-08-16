@@ -1,8 +1,10 @@
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public int maxHealth = 100;
     public int health;
     public GameObject ground;
     public GameObject wall;
@@ -11,18 +13,24 @@ public class Player : MonoBehaviour
     public GameObject key;
     public GameObject exit;
 
+    public Image healthBar;
     
     // Start is called before the first frame update
     void Start()
     {
-        health = 100;
+        health = maxHealth;
+    }
+
+    void Update()
+    {
+        healthBar.fillAmount = health / maxHealth;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.TryGetComponent(out InteractableItem item))
         {
-            Debug.Log(item);
+            // Debug.Log(item);
             GetComponent<FirstPersonController>().nearbyItem = hit.gameObject;
         }
     }

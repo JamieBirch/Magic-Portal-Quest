@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     
     public float gameDuration;
     public float countdown;
-    public Text countdownText;
+    public Image timerBar;
     
     // Start is called before the first frame update
     void Start()
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
 
         countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
+        timerBar.fillAmount = countdown / gameDuration;
         
         // countdownText.text = $"{countdown:00.00}";
     }
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameOver");
     }
 
-    private void PlaceKey()
+    /*private void PlaceKey()
     {
         int keyPositionIndex = new Random().Next(0, cornerPositions.Length);
         //avoid placing in same corner
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
         }
         Vector3 cornerPosition = cornerPositions[keyPositionIndex];
         Instantiate(key, cornerPosition, Quaternion.identity);
-    }
+    }*/
 
     /*private void PlaceExit()
     {
