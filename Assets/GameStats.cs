@@ -4,5 +4,8 @@
     public static int relics = 0;
     public static int traps = 0;
     public static bool keyFound = false;
-
+    //TODO propagate
+    public static float finishTime = 30;
+    
+    public static bool gameOver = false;
 }

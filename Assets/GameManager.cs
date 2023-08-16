@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private EndGame _endGameManager;
+    
     public GameObject player;
     public Player playerComponent;
     public GameObject[] tiles;
@@ -24,7 +26,9 @@ public class GameManager : MonoBehaviour
     public float gameDuration;
     public float countdown;
     public Image timerBar;
-    public bool _gameOver = false;
+    // public bool _gameOver = false;
+    
+    // public GameObject gameOverUI;
     
     // Start is called before the first frame update
     void Start()
@@ -35,12 +39,17 @@ public class GameManager : MonoBehaviour
         PlaceChests();
 
         playerComponent = player.GetComponent<Player>();
+        _endGameManager = EndGame.instance;
         
         countdown = gameDuration;
     }
 
     private void Update()
     {
+        if (GameStats.gameOver)
+        {
+            return;
+        }
         if (playerComponent.health <= 0)
         {
             PlayerMessageService.instance.ShowMessage("You're dead");
@@ -62,9 +71,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        _gameOver = true;
-        PlayerMessageService.instance.ShowMessage("GameOver");
-        Debug.Log("GameOver");
+        GameStats.gameOver = true;
+        _endGameManager.FinishGame(false);
     }
 
     private void PlaceChests()
