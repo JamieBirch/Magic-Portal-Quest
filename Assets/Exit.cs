@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour, InteractableItem
 {
-    private EndGame _endGameManager;
+    /*private EndGame _endGameManager;
     
     private void Awake()
     {
         _endGameManager = EndGame.instance;
-    }
+    }*/
     
     public void interact(Player player)
     {
@@ -15,7 +15,7 @@ public class Exit : MonoBehaviour, InteractableItem
         if (GameStats.keyFound)
         {
             GameStats.gameOver = true;
-            _endGameManager.FinishGame(true);
+            EndGame.instance.FinishGame(true);
             PlayerMessageService.instance.ShowMessage("You won!");
             Debug.Log("You won!");
         }
