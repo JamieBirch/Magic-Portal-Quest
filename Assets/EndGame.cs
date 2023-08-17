@@ -10,6 +10,7 @@ public class EndGame : MonoBehaviour
     public GameObject score;
     public Text resultTxt;
     public Text relicsScore;
+    public Text timeScore;
     public Text finalScore;
 
     private void Awake()
@@ -29,8 +30,11 @@ public class EndGame : MonoBehaviour
         {
             score.SetActive(true);
             endScreenText = "YOU WON";
+            GameStats.finishTime = GetComponent<GameManager>().countdown;
             relicsScore.text = GameStats.relics.ToString();
+            timeScore.text = GameStats.finishTime.ToString();
             finalScore.text = CalculateFinalScore().ToString();
+            
         }
         else
         {

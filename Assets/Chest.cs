@@ -25,7 +25,7 @@ public class Chest : MonoBehaviour, InteractableItem
         if (GameStats.chestsFound >= 2 && GameStats.chestsFound < 6 && !GameStats.keyFound)
         {
             Debug.Log("Chance to get a key");
-            if (OneOfTree())
+            if (TossCoin())
             {
                 Debug.Log("Lucky!");
                 GetKey();
@@ -56,15 +56,15 @@ public class Chest : MonoBehaviour, InteractableItem
         }
         else
         {
-            if (TossCoin())
-            {
-                //relic
-                GetRelic();
-            }
-            else
+            if (OneOfTree())
             {
                 //trap!
                 Trap(player);
+            }
+            else
+            {
+                //relic
+                GetRelic();
             }
         }
     }
