@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     private void PlaceChests()
     {
-        Vector3 chestOffset = new Vector3(0, 1.5f, 0);
+        Vector3 chestOffset = new Vector3(0, 1, 0);
         // IEnumerable<Vector3> pois = GameObject.FindGameObjectsWithTag(potentianPOITag).Select(poi -> poi.transform.position);
         GameObject[] gameObjectsWithTag = GameObject.FindGameObjectsWithTag(potentianPOITag);
         List<Vector3> pois = new List<Vector3>();

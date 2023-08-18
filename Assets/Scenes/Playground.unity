@@ -487,7 +487,7 @@ MonoBehaviour:
   - {fileID: 8771272864665312281, guid: 11559b1a576581b4a938fb952a4d7162, type: 3}
   exit: {fileID: 4974204992020084477, guid: 08182bc4d6135a64e8f3c30a5846bab6, type: 3}
   key: {fileID: 4974204992020084477, guid: 3b852ae33f7cf594587ebdb98caddf87, type: 3}
-  chest: {fileID: 4974204992020084477, guid: af3085ab0a08bed4fb48c715c37baea6, type: 3}
+  chest: {fileID: 428329674087743564, guid: 45554edeb340e1e4eb96d7156e067c3f, type: 3}
   tilePositions:
   - {x: -6, y: 0, z: -6}
   - {x: -6, y: 0, z: 6}
