@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour, InteractableItem
 {
+    public GameObject fixedPortal;
+    public GameObject brokenPortal;
     /*private EndGame _endGameManager;
     
     private void Awake()
@@ -14,6 +16,8 @@ public class Exit : MonoBehaviour, InteractableItem
         Debug.Log("Interact with exit");
         if (GameStats.keyFound)
         {
+            brokenPortal.SetActive(false);
+            fixedPortal.SetActive(true);
             GameStats.gameOver = true;
             EndGame.instance.FinishGame(true);
             PlayerMessageService.instance.ShowMessage("You won!");
@@ -21,8 +25,8 @@ public class Exit : MonoBehaviour, InteractableItem
         }
         else
         {
-            PlayerMessageService.instance.ShowMessage("You need to find the key!");
-            Debug.Log("You need to find the key!");
+            PlayerMessageService.instance.ShowMessage("You need to find the support!");
+            Debug.Log("You need to find the support!");
         }
     }
 }
