@@ -18,7 +18,7 @@ public class Exit : MonoBehaviour, InteractableItem
         if (!broken)
         {
             GameStats.gameOver = true;
-            EndGame.instance.FinishGame(true);
+            EndGame.instance.FinishGame(player, true);
             Debug.Log("You won!");
         } else if (GameStats.keyFound && broken)
         {

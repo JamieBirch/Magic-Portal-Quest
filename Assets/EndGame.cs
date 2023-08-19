@@ -1,4 +1,5 @@
 using System;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,7 @@ public class EndGame : MonoBehaviour
         instance = this;
     }
 
-    public void FinishGame(bool won)
+    public void FinishGame(Player player, bool won)
     {
         //turn off ui
         playerCanvas.SetActive(false);
@@ -61,6 +62,8 @@ public class EndGame : MonoBehaviour
 
         resultTxt.text = endScreenText;
         gameOverUI.SetActive(true);
+        player.GetComponent<FirstPersonController>().enabled = false;
+        Time.timeScale = 0f;
     }
 
     private int CalculateFinalScore(int relicsScore,  int timeScore)

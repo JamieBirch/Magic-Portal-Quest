@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         GameStats.gameOver = true;
-        _endGameManager.FinishGame(false);
+        _endGameManager.FinishGame(playerComponent, false);
     }
 
     public void PlayAgain()
