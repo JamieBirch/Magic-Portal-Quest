@@ -3,11 +3,11 @@ using UnityEngine;
 public class SoundEffectsPlayer : MonoBehaviour
 {
     public AudioSource audioSource;
-    public AudioClip ac1;
+    // public AudioClip ac1;
 
-    public void playSound()
+    public void playSound(AudioClip ac)
     {
-        audioSource.clip = ac1;
+        audioSource.clip = ac;
         audioSource.Play();
     }
 }

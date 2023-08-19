@@ -4,18 +4,23 @@ using UnityEngine.UI;
 
 public class EndGame : MonoBehaviour
 {
+    public SoundEffectsPlayer soundPlayer;
     public static EndGame instance;
     public GameObject playerCanvas;
     public GameObject gameOverUI;
     public GameObject score;
     public Text resultTxt;
-    public Text relicsScore;
-    public Text timeScore;
-    public Text finalScore;
+    // public Text relicsScore;
+    // public Text timeScore;
+    // public Text finalScore;
 
     public StarsUI relicStars;
     public StarsUI timeStars;
     public StarsUI totalStars;
+
+    // public AudioClip support;
+    public AudioClip win;
+    public AudioClip lost;
 
     private void Awake()
     {
@@ -32,7 +37,7 @@ public class EndGame : MonoBehaviour
         String endScreenText;
         if (won)
         {
-            GetComponent<SoundEffectsPlayer>().playSound();
+            soundPlayer.playSound(win);
             score.SetActive(true);
             endScreenText = "YOU WON";
             GameStats.finishTime = GetComponent<GameManager>().countdown;
@@ -49,6 +54,7 @@ public class EndGame : MonoBehaviour
         }
         else
         {
+            soundPlayer.playSound(lost);
             score.SetActive(false);
             endScreenText = "GAME OVER";
         }

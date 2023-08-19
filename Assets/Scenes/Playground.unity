@@ -624,6 +624,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestsUIPanel: {fileID: 232330502}
   ChestsUiList: {fileID: 0}
+  soundPlayer: {fileID: 97979054}
+  relic: {fileID: 8300000, guid: de19906c4e83d7243b6d1d6d942b14c7, type: 3}
+  hurt: {fileID: 8300000, guid: 10cf1ea7b8113ab47b4ba1e0fdd565d8, type: 3}
+  support: {fileID: 8300000, guid: c0a244935720b3f4a83e741d36da0f77, type: 3}
 --- !u!114 &97979052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,16 +655,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2cf6ee056ed094cb730b2a44b1385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundPlayer: {fileID: 97979054}
   playerCanvas: {fileID: 1071195701}
   gameOverUI: {fileID: 835681598}
   score: {fileID: 581903692}
   resultTxt: {fileID: 1447023418}
-  relicsScore: {fileID: 1095621219}
-  timeScore: {fileID: 584832430}
-  finalScore: {fileID: 1633584760}
   relicStars: {fileID: 1440725564}
   timeStars: {fileID: 1488805941}
   totalStars: {fileID: 1283547563}
+  win: {fileID: 8300000, guid: 078158bab5a2ef64eaa6433194cbdf04, type: 3}
+  lost: {fileID: 8300000, guid: 42cc33eae34f36146a4d88757b2fadb2, type: 3}
 --- !u!114 &97979054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,7 +678,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 541775349}
-  ac1: {fileID: 8300000, guid: 24245bee7afb13941a5d2149c7673d3f, type: 3}
 --- !u!1 &104950389
 GameObject:
   m_ObjectHideFlags: 0
@@ -9865,6 +9868,16 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5294834934616956872, guid: 712e2c40894077748b37d9c07f397df1,
+        type: 3}
+      propertyPath: support
+      value: 
+      objectReference: {fileID: 8300000, guid: c0a244935720b3f4a83e741d36da0f77, type: 3}
+    - target: {fileID: 5294834934616956872, guid: 712e2c40894077748b37d9c07f397df1,
+        type: 3}
+      propertyPath: soundPlayer
+      value: 
+      objectReference: {fileID: 97979054}
     - target: {fileID: 7733103106245234424, guid: 712e2c40894077748b37d9c07f397df1,
         type: 3}
       propertyPath: m_Name

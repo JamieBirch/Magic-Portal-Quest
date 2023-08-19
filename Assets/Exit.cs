@@ -7,6 +7,9 @@ public class Exit : MonoBehaviour, InteractableItem
 
     private bool broken = true;
     
+    public SoundEffectsPlayer soundPlayer;
+    public AudioClip support;
+    
     public void interact(Player player)
     {
         Debug.Log("Interact with exit");
@@ -17,6 +20,7 @@ public class Exit : MonoBehaviour, InteractableItem
             Debug.Log("You won!");
         } else if (GameStats.keyFound && broken)
         {
+            soundPlayer.playSound(support);
             broken = false;
             brokenPortal.SetActive(false);
             fixedPortal.SetActive(true);
