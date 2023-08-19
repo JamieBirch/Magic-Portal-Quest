@@ -4,6 +4,8 @@ public class Exit : MonoBehaviour, InteractableItem
 {
     public GameObject fixedPortal;
     public GameObject brokenPortal;
+    public GameObject effectWorking;
+    public GameObject effectBroken;
 
     private bool broken = true;
     
@@ -24,6 +26,10 @@ public class Exit : MonoBehaviour, InteractableItem
             broken = false;
             brokenPortal.SetActive(false);
             fixedPortal.SetActive(true);
+            
+            effectBroken.SetActive(false);
+            effectWorking.SetActive(true);
+            
             PlayerMessageService.instance.ShowMessage("You fixed the portal!");
         }
         else
