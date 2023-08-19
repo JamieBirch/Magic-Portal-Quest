@@ -2,6 +2,7 @@ using UnityEngine;
 using Random = System.Random;
 using System.Collections.Generic;
 using System.Linq;
+using StarterAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -13,8 +14,6 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public Player playerComponent;
     public GameObject[] tiles;
-    public GameObject exit;
-    public GameObject key;
     public GameObject chest;
     // public GameObject signalPoint;
     public Vector3[] tilePositions = {new Vector3(-6, 0, -6), new Vector3(-6, 0, 6), new Vector3(6, 0, -6), new Vector3(6, 0, 6)};
@@ -22,11 +21,13 @@ public class GameManager : MonoBehaviour
     private int exitPositionIndex;
     public string potentianPOITag = "potential_poi";
     private int chestsPerLocation = 7;
-    // private int signalPointsPerLocation = 4;
     
     public float gameDuration;
     public float countdown;
     public Image timerBar;
+    
+    public static bool gameStart = true;
+
     // public bool _gameOver = false;
     
     // public GameObject gameOverUI;
@@ -42,11 +43,29 @@ public class GameManager : MonoBehaviour
         playerComponent = player.GetComponent<Player>();
         _endGameManager = EndGame.instance;
         
+    }
+
+    private void StartGame()
+    {
+        Debug.Log("Game Start");
+        //TODO narration text
+        
+        // cameraShake.Shake(10000f, 2f);
+        // player.GetComponent<FirstPersonController>().enabled = true;
+        // Debug.Log("Controls enabled");
+
+        gameStart = false;
+        
         countdown = gameDuration;
     }
 
     private void Update()
     {
+        if (gameStart)
+        {
+            StartGame();
+        }
+        
         if (GameStats.gameOver)
         {
             return;

@@ -3,17 +3,9 @@ using Random = System.Random;
 
 public class Chest : MonoBehaviour, InteractableItem
 {
-    // private ChestsManager _chestsManager;
     public GameObject defaultChest;
     public GameObject openChest;
     private bool isOpen = false;
-
-    // public GameObject chestsUIPanel;
-
-    private void Awake()
-    {
-        // _chestsManager = ChestsManager.instance;
-    }
 
     private void OpenChest(Player player)
     {

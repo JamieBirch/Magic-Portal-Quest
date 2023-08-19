@@ -4,24 +4,23 @@ public class Exit : MonoBehaviour, InteractableItem
 {
     public GameObject fixedPortal;
     public GameObject brokenPortal;
-    /*private EndGame _endGameManager;
-    
-    private void Awake()
-    {
-        _endGameManager = EndGame.instance;
-    }*/
+
+    private bool broken = true;
     
     public void interact(Player player)
     {
         Debug.Log("Interact with exit");
-        if (GameStats.keyFound)
+        if (!broken)
         {
-            brokenPortal.SetActive(false);
-            fixedPortal.SetActive(true);
             GameStats.gameOver = true;
             EndGame.instance.FinishGame(true);
-            PlayerMessageService.instance.ShowMessage("You won!");
             Debug.Log("You won!");
+        } else if (GameStats.keyFound && broken)
+        {
+            broken = false;
+            brokenPortal.SetActive(false);
+            fixedPortal.SetActive(true);
+            PlayerMessageService.instance.ShowMessage("You fixed the portal!");
         }
         else
         {

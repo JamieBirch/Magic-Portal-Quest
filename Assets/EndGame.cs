@@ -32,6 +32,7 @@ public class EndGame : MonoBehaviour
         String endScreenText;
         if (won)
         {
+            GetComponent<SoundEffectsPlayer>().playSound();
             score.SetActive(true);
             endScreenText = "YOU WON";
             GameStats.finishTime = GetComponent<GameManager>().countdown;

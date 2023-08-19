@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee2109a615afaa4ba994ff6363faba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraShake: {fileID: 0}
   defaultChest: {fileID: 3205045808328989996}
   openChest: {fileID: 6442505374390089208}
 --- !u!1001 &2358749308011995261
