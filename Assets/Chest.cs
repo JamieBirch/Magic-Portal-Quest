@@ -95,6 +95,7 @@ public class Chest : MonoBehaviour, InteractableItem
         Debug.Log("Triggered trap");
         ChestsManager.instance.ShowTrap(GameStats.chestsFound);
         player.health -= 35;
+        player.LoseHeart();
         GameStats.traps++;
     }
 

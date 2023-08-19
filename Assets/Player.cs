@@ -6,14 +6,9 @@ public class Player : MonoBehaviour
 {
     public float maxHealth = 100f;
     public float health;
-    public GameObject ground;
-    public GameObject wall;
-    public GameObject chest;
-    // public GameObject signal;
-    public GameObject key;
-    public GameObject exit;
+    public HeartsUI HeartsUI;
 
-    public Image healthBar;
+    // public Image healthBar;
     
     // Start is called before the first frame update
     void Start()
@@ -21,9 +16,15 @@ public class Player : MonoBehaviour
         health = maxHealth;
     }
 
-    void Update()
+    /*void Update()
     {
-        healthBar.fillAmount = health / maxHealth;
+        HeartsUI.LoseHeart();
+        // healthBar.fillAmount = health / maxHealth;
+    }*/
+
+    public void LoseHeart()
+    {
+        HeartsUI.LoseHeart();
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
