@@ -2,6 +2,7 @@ using UnityEngine;
 using Random = System.Random;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -73,6 +74,11 @@ public class GameManager : MonoBehaviour
     {
         GameStats.gameOver = true;
         _endGameManager.FinishGame(false);
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void PlaceChests()

@@ -83,8 +83,8 @@ public class Chest : MonoBehaviour, InteractableItem
 
     private void GetKey()
     {
-        PlayerMessageService.instance.ShowMessage("Key Found!");
-        Debug.Log("Key Found");
+        PlayerMessageService.instance.ShowMessage("Support Found!");
+        Debug.Log("Support Found");
         GameStats.keyFound = true;
         ChestsManager.instance.ShowKey(GameStats.chestsFound);
     }

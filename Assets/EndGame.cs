@@ -13,6 +13,10 @@ public class EndGame : MonoBehaviour
     public Text timeScore;
     public Text finalScore;
 
+    public StarsUI relicStars;
+    public StarsUI timeStars;
+    public StarsUI totalStars;
+
     private void Awake()
     {
         instance = this;
@@ -31,10 +35,16 @@ public class EndGame : MonoBehaviour
             score.SetActive(true);
             endScreenText = "YOU WON";
             GameStats.finishTime = GetComponent<GameManager>().countdown;
-            relicsScore.text = GameStats.relics.ToString();
+            /*relicsScore.text = GameStats.relics.ToString();
             timeScore.text = GameStats.finishTime.ToString();
-            finalScore.text = CalculateFinalScore().ToString();
-            
+            finalScore.text = CalculateFinalScore().ToString();*/
+
+            int relicsScore = GameStats.relics > 3 ? 3 : GameStats.relics;
+            relicStars.Show(relicsScore);
+            int timeScore = (int)(GameStats.finishTime / 30) > 3 ? 3 : (int)(GameStats.finishTime / 30);
+            timeStars.Show(timeScore);
+            int totalScore = CalculateFinalScore(relicsScore, timeScore);
+            totalStars.Show(totalScore);
         }
         else
         {
@@ -46,8 +56,10 @@ public class EndGame : MonoBehaviour
         gameOverUI.SetActive(true);
     }
 
-    private int CalculateFinalScore()
+    private int CalculateFinalScore(int relicsScore,  int timeScore)
     {
-        return (int)(GameStats.relics * 100 + GameStats.finishTime * 10);
+        // return (int)(GameStats.relics * 100 + GameStats.finishTime * 10);
+        Debug.Log("Final stars: " + (relicsScore + timeScore)/2);
+        return (relicsScore + timeScore)/2;
     }
 }
