@@ -125,14 +125,26 @@ namespace StarterAssets
 		{
 			if (nearbyItem != null && _input.interact)
 			{
-				// Debug.Log("Interact");
+				Debug.Log("Interact");
 				if (nearbyItem.TryGetComponent<InteractableItem>(out InteractableItem item))
 				{
 					item.interact(GetComponent<Player>());
 				} 
 				_input.interact = false;
-				nearbyItem = null;
+				// nearbyItem = null;
 			}
+
+			if (nearbyItem != null)
+			{
+				float distance = Vector3.Distance(transform.position, nearbyItem.transform.position);
+				// Debug.Log(distance);
+				if (distance >= 3)
+				{
+					_input.interact = false;
+					nearbyItem = null;
+				}
+			}
+			
 		}
 
 		private void LateUpdate()

@@ -32,7 +32,7 @@ public class PlayerMessageService : MonoBehaviour
     
     public void ShowMessage(string messageText)
     {
-        messagePrefab.SetActive(true);
         messagePrefabText.text = messageText;
+        messagePrefab.SetActive(true);
     }
 }

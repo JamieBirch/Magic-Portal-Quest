@@ -1,6 +1,5 @@
 using StarterAssets;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -31,8 +30,8 @@ public class Player : MonoBehaviour
     {
         if (hit.gameObject.TryGetComponent(out InteractableItem item))
         {
-            // Debug.Log(item);
+            Debug.Log(item);
             GetComponent<FirstPersonController>().nearbyItem = hit.gameObject;
-        }
+        } 
     }
 }

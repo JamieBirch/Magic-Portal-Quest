@@ -1,18 +1,25 @@
+using System;
 using UnityEngine;
 using Random = System.Random;
 
 public class Chest : MonoBehaviour, InteractableItem
 {
+    private PlayerMessageService _messageService;
+    
     public GameObject defaultChest;
     public GameObject openChest;
     private bool isOpen = false;
 
     private void OpenChest(Player player)
     {
+        if (_messageService == null)
+        {
+            _messageService = PlayerMessageService.instance;
+        }
         Debug.Log("Opening chest " + GameStats.chestsFound);
         if (isOpen)
         {
-            PlayerMessageService.instance.ShowMessage("Chest already open");
+            _messageService.ShowMessage("Chest already open");
             Debug.Log("Chest already open");
             return;
         }
@@ -67,7 +74,7 @@ public class Chest : MonoBehaviour, InteractableItem
 
     private void GetRelic()
     {
-        PlayerMessageService.instance.ShowMessage("Relic found");
+        _messageService.ShowMessage("Relic found");
         Debug.Log("Got Relic");
         ChestsManager.instance.ShowRelic(GameStats.chestsFound);
         GameStats.relics++;
@@ -75,7 +82,7 @@ public class Chest : MonoBehaviour, InteractableItem
 
     private void GetKey()
     {
-        PlayerMessageService.instance.ShowMessage("Support Found!");
+        _messageService.ShowMessage("Support Found!");
         Debug.Log("Support Found");
         GameStats.keyFound = true;
         ChestsManager.instance.ShowKey(GameStats.chestsFound);
@@ -83,7 +90,7 @@ public class Chest : MonoBehaviour, InteractableItem
 
     private void Trap(Player player)
     {
-        PlayerMessageService.instance.ShowMessage("Trap triggered");
+        _messageService.ShowMessage("Trap triggered");
         Debug.Log("Triggered trap");
         ChestsManager.instance.ShowTrap(GameStats.chestsFound);
         player.health -= 35;

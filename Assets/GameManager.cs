@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private EndGame _endGameManager;
+    public PlayerMessageService _messageService;
     
     public GameObject player;
     public Player playerComponent;
@@ -72,14 +73,14 @@ public class GameManager : MonoBehaviour
         }
         if (playerComponent.health <= 0)
         {
-            PlayerMessageService.instance.ShowMessage("You're dead");
+            _messageService.ShowMessage("You're dead");
             Debug.Log("You're dead");
             GameOver();
         }
 
         if (countdown <= 0)
         {
-            PlayerMessageService.instance.ShowMessage("Time is out");
+            _messageService.ShowMessage("Time is out");
             Debug.Log("Time is out");
             GameOver();
         }

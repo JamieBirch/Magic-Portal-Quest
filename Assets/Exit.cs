@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour, InteractableItem
 {
+    public PlayerMessageService MessageService;
     public GameObject fixedPortal;
     public GameObject brokenPortal;
     public GameObject effectWorking;
@@ -30,11 +31,11 @@ public class Exit : MonoBehaviour, InteractableItem
             effectBroken.SetActive(false);
             effectWorking.SetActive(true);
             
-            PlayerMessageService.instance.ShowMessage("You fixed the portal!");
+            MessageService.ShowMessage("You fixed the portal!");
         }
         else
         {
-            PlayerMessageService.instance.ShowMessage("You need to find the support!");
+            MessageService.ShowMessage("You need to find the support!");
             Debug.Log("You need to find the support!");
         }
     }
