@@ -124,11 +124,12 @@ namespace StarterAssets
 
 		private void Buttons()
 		{
-			/*if (_input.quit)
+			if (_input.quit)
 			{
-
+				Debug.Log("quitting");
+				Application.Quit();
 				_input.quit = false;
-			} */
+			} 
 			if (_input.retry)
 			{
 				Debug.Log("retry pressed");
