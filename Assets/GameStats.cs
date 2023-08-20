@@ -8,4 +8,14 @@
     public static float finishTime = 0;
     
     public static bool gameOver = false;
+
+    public static void Reset()
+    {
+        chestsFound = 0;
+        relics = 0;
+        traps = 0;
+        keyFound = false;
+        finishTime = 0;
+        gameOver = false;
+    }
 }

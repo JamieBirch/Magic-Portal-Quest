@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         playerComponent = player.GetComponent<Player>();
         _endGameManager = EndGame.instance;
-        
+        gameStart = true;
     }
 
     private void StartGame()
@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
         // player.GetComponent<FirstPersonController>().enabled = true;
         // Debug.Log("Controls enabled");
 
+        playerComponent.health = playerComponent.maxHealth;
+        GameStats.Reset();
         gameStart = false;
         
         countdown = gameDuration;

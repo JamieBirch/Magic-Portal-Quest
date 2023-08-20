@@ -62,7 +62,7 @@ public class EndGame : MonoBehaviour
 
         resultTxt.text = endScreenText;
         gameOverUI.SetActive(true);
-        player.GetComponent<FirstPersonController>().enabled = false;
+        // player.GetComponent<FirstPersonController>().enabled = false;
         Time.timeScale = 0f;
     }
 

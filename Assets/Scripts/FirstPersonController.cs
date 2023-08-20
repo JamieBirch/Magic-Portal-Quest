@@ -1,5 +1,5 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -119,6 +119,23 @@ namespace StarterAssets
 			GroundedCheck();
 			Move();
 			Interact();
+			Buttons();
+		}
+
+		private void Buttons()
+		{
+			/*if (_input.quit)
+			{
+
+				_input.quit = false;
+			} */
+			if (_input.retry)
+			{
+				Debug.Log("retry pressed");
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+				Time.timeScale = 1f;
+				_input.retry = false;
+			}
 		}
 
 		private void Interact()

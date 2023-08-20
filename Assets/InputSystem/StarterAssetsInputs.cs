@@ -13,6 +13,8 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool interact;
+		public bool retry;
+		public bool quit;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -49,6 +51,16 @@ namespace StarterAssets
 		{
 			InteractInput(value.isPressed);	
 		}
+		
+		public void OnRetry(InputValue value)
+		{
+			RetryInput(value.isPressed);	
+		}
+		
+		public void OnQuit(InputValue value)
+		{
+			QuitInput(value.isPressed);	
+		}
 
 #endif
 
@@ -76,6 +88,16 @@ namespace StarterAssets
 		public void InteractInput(bool valueIsPressed)
 		{
 			interact = valueIsPressed;
+		}
+		
+		public void RetryInput(bool valueIsPressed)
+		{
+			retry = valueIsPressed;
+		}
+		
+		public void QuitInput(bool valueIsPressed)
+		{
+			quit = valueIsPressed;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

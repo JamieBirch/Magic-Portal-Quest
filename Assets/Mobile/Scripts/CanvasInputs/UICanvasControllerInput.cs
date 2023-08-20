@@ -33,6 +33,16 @@ namespace StarterAssets
             starterAssetsInputs.InteractInput(virtualInteractState);
         }
         
+        public void VirtualQuitInput(bool virtualInteractState)
+        {
+            starterAssetsInputs.QuitInput(virtualInteractState);
+        }
+        
+        public void VirtualRetryInput(bool virtualInteractState)
+        {
+            starterAssetsInputs.RetryInput(virtualInteractState);
+        }
+        
     }
 
 }
